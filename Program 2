@@ -1,0 +1,74 @@
+Experiment 2: Working with Maven: Creating a Maven Project,
+Understanding the POM File, Dependency Management and Plugins
+
+
+mvn archetype:generate \
+  -DgroupId=com.example \
+  -DartifactId=MyMavenApp \
+  -DarchetypeArtifactId=maven-archetype-quickstart \
+  -DinteractiveMode=false
+
+cd MyMavenApp
+
+POM.xml file content:                  // use nano or vim to edit the file content                                           
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- Coordinates -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>MyMavenApp</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <!-- Java version property -->
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>         //Note: if you have different java version in your system change it to tat particular version in the Pom.xml file for it to run
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <!-- Dependencies -->
+  <dependencies>
+    <!-- JUnit for testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Plugins -->
+  <build>
+    <plugins>
+      <!-- Compile with Java 11 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+      <!-- Run tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
+
+mvn compile
+
+mvn test
+
+mvn package
+
+mvn clean
+
+
+
