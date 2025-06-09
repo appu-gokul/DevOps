@@ -1,0 +1,17 @@
+Experiment 1: Introduction to Maven and Gradle: Overview of Build
+Automation Tools, Key Differences Between Maven and Gradle, Installation
+and Setup:
+
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install openjdk-11-jdk            // Note: most of the time ur lab system will hav it install already! 
+java -version 
+
+sudo apt install maven
+mvn --version
+
+sudo apt install gradle
+gradle --version 
+
+
