@@ -5,7 +5,7 @@ and Setup:
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt install openjdk-11-jdk            // Note: most of the time ur lab system will hav it install already! 
+sudo apt install openjdk-11-jdk             // Note: most of the time ur lab system will hav it install already! 
 java -version 
 
 sudo apt install maven
