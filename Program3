@@ -1,0 +1,11 @@
+Experiment 3: Working with Gradle: Setting Up a Gradle Project,
+Understanding Build Scripts (Groovy and Kotlin DSL), Dependency
+Management and Task Automation
+
+step 1:                                                                                                         //This is a short and easy way and not according to manual but same output 
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk install gradle 8.7
+
+step:2
+gradle hello
