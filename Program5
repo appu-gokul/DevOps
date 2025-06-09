@@ -1,0 +1,28 @@
+Experiment 5: Introduction to Jenkins: What is Jenkins?, Installing Jenkins
+on Local or Cloud Environment, Configuring Jenkins for First Use
+
+// Note this method of Jenkins installation is simple, but is not according to the lab manual..!!    (Works only for local ubuntu installation no CLOUD and shit)
+
+sudo apt update
+sudo apt upgrade -y
+
+Snap version              // Check if u hav snap program (should be there in most systems by default)
+
+sudo apt update
+sudo apt install snapd -y              // If u dont hav it install it using this command 
+
+sudo snap install jenkins --classic   
+
+sudo systemctl status snap.jenkins.jenkins
+
+sudo ufw allow 8080/tcp
+
+Open your browser and search for  http://localhost:8080
+
+sudo find /var/snap/jenkins -type f -name initialAdminPassword -exec cat {} \;       // You will find the admin password here it's a cryptohash gibberish stuff copy and paste it in the webpage
+
+
+
+
+
+                                                                                                  
