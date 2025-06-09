@@ -1,0 +1,79 @@
+Experiment 7: Configuration Management with Ansible: Basics of Ansible:
+Inventory, Playbooks, and Modules, Automating Server Configurations with
+Playbooks, Hands-On: Writing and Running a Basic Playbook
+
+
+sudo apt install ansible -y
+
+nano hosts.ini
+//Add the following content to the hosts.ini
+
+[local]
+localhost ansible_connection=local
+
+Save the file: Press Ctrl+O, then Enter.
+Exit nano: Press Ctrl+X.
+
+
+nano setup.yml
+
+//Add the following YAML content to the setup.yml
+
+---
+- name: Basic Server Setup
+  hosts: local
+  become: yes # Use privilege escalation (sudo)
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
+
+Save the file: Press Ctrl+O, then Enter.
+Exit nano: Press Ctrl+X.
+
+//Execute the Playbook
+
+ansible-playbook -i hosts.ini setup.yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo sed -i 's|^\(deb .*pkg.jenkins.io/debian-stable.*\)|# \1|' /etc/apt/sources.list.d/jenkins.list                      // Ignore this
+sudo apt update
+
+                                                                              
