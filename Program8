@@ -1,0 +1,35 @@
+git hub repo to use: https://github.com/AppuGokul/Jenkins.git                //Dont use any other repo it might not work! and Branch Specifier option should be */main
+
+
+Execute Shell:                            //Choose the Execute shell option in build step menu and paste the given content  
+
+#!/bin/bash
+set -e
+
+# 1) Build with Maven
+mvn clean package
+
+# 2) Deploy via Ansible
+ansible-playbook \
+  -i /opt/ansible/hosts.ini \
+  /opt/ansible/deploy.yml
+
+
+Post-build Actions:                         // Choose the Archive the artifacts option in the post-build option and paste the given content in files to archive box 
+
+target/*.jar
+
+
+nano /opt/ansible/deploy.yml             /// Edit this file using nano and paste the below content and delete any other content only this should be there 
+
+---
+- name: Deploy HelloMaven JAR
+  hosts: local
+  become: yes
+
+  tasks:
+    - name: Copy built JAR to /opt/deployment
+      shell: |
+        cp {{ lookup('env','WORKSPACE') }}/target/*.jar /opt/deployment/HelloMaven.jar
+      args:
+        creates: /opt/deployment/HelloMaven.jar
