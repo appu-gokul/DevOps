@@ -1,0 +1,66 @@
+Experiment 6: Continuous Integration with Jenkins: Setting Up a CI
+Pipeline, Integrating Jenkins with Maven/Gradle, Running Automated
+Builds and Tests
+
+freestyle project:
+
+xml report url: **/target/surefire-reports/*.xml
+
+Jenkins pipeline as code :
+
+//copy paste this in the script box of the CI pipeline choose the pipeline option while creating the job 
+
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        // Pull from GitHub directly, no Jenkinsfile needed in the repo
+        git(
+          url:  'https://github.com/AppuGokul/Jenkins.git',
+          branch: 'main'
+        )
+      }
+    }
+
+    stage('Build & Test') {
+      steps {
+        // Use system Maven on the PATH; adjust if you prefer mvnw
+        sh 'mvn clean package'
+      }
+    }
+  }
+
+  post {
+    always {
+      // Publish JUnit results (if any)
+      junit '**/target/surefire-reports/*.xml'
+      echo "Finished: ${currentBuild.currentResult}"
+    }
+    success {
+      // Archive your built jars only on success
+      archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+    }
+    unstable {
+      // If tests failed, mark the build unstable but keep going
+      echo 'There were test failures.'
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mvn -N io.takari:maven:wrapper   //ignore this
+
